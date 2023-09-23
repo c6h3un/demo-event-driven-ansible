@@ -6,15 +6,12 @@
         api_version: v1
         kind: Event
   rules:
-    - name: run must gather
-      condition: event.type == "ADDED" and event.request.type == "Warning"
-      action:
-        run_job_template:
-          name: must-gather
-          organization: Default
-    - name: run inspect
-      condition: event.type == "ADDED" and event.request.type == "Warning"
-      action:
-        run_job_template:
-          name: inspect-namespace
-          organization: Default
+    - name: run must gather and inspect namespace
+      condition: event.type == "ADDED" and event.resource.type == "Warning"
+      actions:
+        - run_job_template:
+            name: must-gather
+            organization: Default
+        - run_job_template:
+            name: inspect-namespace
+            organization: Default
