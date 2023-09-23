@@ -1,0 +1,10 @@
+---
+- name: Run must gather
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    namespace: "{{ ansible_eda.event.resource.metadata.namespace }}"
+  tasks:
+  - name: run must-gather
+    shell: oc adm must-gather

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Event
+involvedObject:
+  apiVersion: v1
+  kind: Pod
+  name: abc123
+  namespace: testeda
+message: 'Pod abc123 is crashing'
+metadata:
+  name: pod.abc123
+  namespace: testeda
+reason: PodFailed
+source:
+  component: pod
+type: Warning

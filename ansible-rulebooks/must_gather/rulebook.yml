@@ -1,0 +1,14 @@
+---
+- name: Listen for gather cluster information
+  hosts: all
+  sources:
+    - sabre1041.eda.k8s:
+        api_version: v1
+        kind: Event
+  rules:
+    - name: run must gather
+      condition: event.type == "ADDED" and event.request.type == "Warning"
+      action:
+        run_job_template:
+          name: must-gather
+          organization: Default
