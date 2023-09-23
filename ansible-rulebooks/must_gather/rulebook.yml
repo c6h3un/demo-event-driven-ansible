@@ -7,7 +7,7 @@
         kind: Event
   rules:
     - name: run must gather and inspect namespace
-      condition: event.type == "ADDED" and event.resource.type == "Warning"
+      condition: event.type == "ADDED" and event.resource.message is search("crashing",ignorecase=true) and event.resource.type == "Warning"
       actions:
         - run_job_template:
             name: must-gather
